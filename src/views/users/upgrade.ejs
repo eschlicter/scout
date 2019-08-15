@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <% include ../static/partials/head.ejs %>
+  </head>
+  <body>
+
+      <% include ../static/partials/navbar.ejs %>
+
+      <main class="container">
+        <% include ../static/partials/messages.ejs %>
+        <% if(currentUser) { %>
+            <% if(currentUser.role == "standard") { %>
+
+            <h1>Become a premium member today!</h1>
+            <ul>
+              <li>Create private wikis unavailable to standard users</li>
+              <li>Collaborate with other private members</li>
+              <li>Much more coming soon!</li>
+            </ul>
+            <h2>Only $15!</h2>
+        <form action="/users/<%=currentUser.id%>/upgrade" method="POST">
+            <article label="Amount: $15.00"></article>
+                <script
+                src="//checkout.stripe.com/v2/checkout.js" class="stripe-button"
+                data-key="<%=keyPublishable%>"
+                data-amount="1500"
+                data-description="Premium Membership"
+                data-locale="auto">
+                </script>
+            </article>
+          </form>
+
+            <% } if(currentUser.role == "premium") { %>
+            You're a premium member already!
+            <form action="/users/<%=currentUser.id%>/downgrade" method="POST">
+                <button type="submit" class="btn btn-primary">Downgrade</button>
+            </form>
+            <% } %>
+
+          <% } %>
+
+      </main>
+
+
+      <% include ../static/partials/baseScripts.ejs %>
+    </body>
+</html>

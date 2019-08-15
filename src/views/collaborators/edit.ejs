@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <h2> Collaborators <h2>
+
+  <% if(collaborators) { %>
+    <ul class ="list-group">
+      <% collaborators.forEach((collaborator) => {  %>
+          <li class="list-group-item">
+            <%= collaborator.User.username %>
+            <% if(wiki.private == true && (currentUser.role === "premium" || currentUser.role === "admin")) { %>
+              <form action="/wikis/<%= wiki.id %>/collaborators/remove" method="post">
+                <button type="submit" class="btn btn-danger">Remove</button>
+                <input type="hidden" value="<%= collaborator.User.id %>" class="form-control" name="collaborator" >
+              </form>
+            <% } %>
+         </li>
+      <% }) %>
+    </ul>
+  <% } %>
+
+  <% if(wiki.private == true && (currentUser.role === "premium" || currentUser.role === "admin")) { %>
+    <form action="/wikis/<%= wiki.id %>/collaborators/add" method="post">
+      <div class="input-group">
+        <input type="text" class="form-control" name="collaborator" placeholder="Enter username">
+        <button type="submit" class="btn btn-primary">Add</button>
+      </div>
+    </form>
+  <% } %>
+</html>
