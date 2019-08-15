@@ -1,0 +1,11 @@
+{
+  "name": "scout",
+  "version": "1.0.0",
+  "description": "A neighborhood news application for users to discuss and share content",
+  "main": "src/server.js",
+  "scripts": {
+    "test": "export NODE_ENV=test&& jasmine"
+  },
+  "author": "eschlicter",
+  "license": "ISC"
+}
