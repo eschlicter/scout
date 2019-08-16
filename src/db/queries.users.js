@@ -21,7 +21,7 @@ module.exports = {
         to: newUser.email,
         from: 'test@example.com',
         subject: 'Account confirmation',
-        text: 'Welcome to Blocipedia!',
+        text: 'Welcome to Scout!',
         html: '<strong>Please login to your account to start creating wikis!</strong>',
       };
       sgMail.send(msg);
